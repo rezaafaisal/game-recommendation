@@ -95,15 +95,12 @@ Setelah dihitung Cosine Similarity-nya, selanjutnya membuat rekomendasi berdasar
 
 ## Evaluation
 Pada pendekatan ***Content-Based Filtering***, evaluasi dilakukan secara manual menggunakan *metric Precision* (Presisi) yang dikhususkan untuk model sistem rekomendasi. Dalam sistem rekomendasi, *precision* merupakan jumlah item rekomendasi yang relevan dimana penggunaannya dapat dilakukan secara manual. Dalam hal ini, *precision* tidak dapat dihitung dengan memanggil library scikit learn karena tidak ada data target/label, seperti pada supervised learning. Pada sistem rekomendasi, *precision* dapat dirumuskan sebagai berikut:
-<center>
-    <img src="images/precision.png" style="zoom:90%" />
-    <small class="content-footer">Gambar 5. Rumus Precision</small>
-</center>
+
+<img src="images/precision.png" style="zoom:90%" />
+<small class="content-footer">Gambar 5. Rumus Precision</small>
 
 Pada kasus ini, pengguna membeli game `"Chiller"` genre action, horror dan akan diberikan rekomendasi video game yang sesuai dengan genrenya. Berikut adalah hasil rekoemndasinya :
 
-
-<center>
 
 | **Title** | **Genre** |
 |---|---|
@@ -112,7 +109,6 @@ Pada kasus ini, pengguna membeli game `"Chiller"` genre action, horror dan akan 
 | Fright Night | Action, Horror |
 | Call of Duty: Black Ops - Zombies | Action, Horror |
 | Koudelka | Action, Horror |
-</center>
 
 <small>Tabel 2. Hasil Rekomendasi</small>
 
@@ -121,11 +117,3 @@ Dari hasil rekomendasi Tabel 2 dapat dilihat bahwa game `Chiller` memiliki genre
 ## Kesimpulan
 
 Hasil dari sistem yang dibuat, dapat disimpulkan bahwa hasil rekomendasi yang diberikan oleh sistem sudah sesuai dengan personalisasi berdasarkan rating, jumlah vote, dan tahun rilis sehingga membuat pengguna akan lebih mepertimbangkan game yang akan dibeli/dimainkan berdasarkan hasil rekomendasi tersebut. Dataset ini sudah sangat bagus untuk menggunakan pendekatan *content-based filtering* karena memiliki data cukup lengkap yang dapat dilihat dari tahun rilisnya.
-
-<style>
-    .content-footer{
-        text-align:center;
-        display:block;
-        margin-bottom: 20px;
-    }
-</style>
