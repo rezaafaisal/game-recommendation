@@ -78,6 +78,17 @@ plt.figure(figsize=(6,3))
 genre_count.plot(kind='barh', title='Genre of Games')
 plt.show()
 
+# mengecek fitur Certificate
+
+certificate_count = games_df['Certificate'].value_counts(ascending=True)[-10:]
+
+certificate_count.plot(kind='barh')
+plt.show()
+
+sns.lineplot(data=games_df, x='Year', y='User Rating')
+plt.title('Game Rate by Year')
+plt.show()
+
 """# Data Preprocessing"""
 
 def slugify(text):
@@ -175,14 +186,14 @@ def game_recommendations(name, similarity_data=cosine_sim_df, items=data, k=5):
   # Range(start, stop, step)
   index = similarity_data.loc[:, name].to_numpy().argpartition(range(-1, -k, -1))
 
-  # Mengambil 20 data dengan similarity terbesar dari index yang ada
-  closest = similarity_data.columns[index[-1:-(20):-1]]
+  # Mengambil 50 data dengan similarity terbesar dari index yang ada
+  closest = similarity_data.iloc[index[-1:-(50):-1]][name]
 
   # Drop nama_resto agar nama resto yang dicari tidak muncul dalam daftar rekomendasi
   closest = closest.drop(name, errors='ignore')
 
   # buat df baru untuk mengurutkan berdasrkan (genre, rating), (genre, tahun terbaru), (genre, jumlah pemain / jumlah vote)
-  closest_df = pd.DataFrame(closest).merge(game_clean_df)
+  closest_df = pd.DataFrame(closest).merge(data, on='title').rename({name: 'cosine_similarity'}, axis=1)
 
   display_recommendation('user_rating', closest_df, k)
   display_recommendation('number_of_votes', closest_df, k)
@@ -192,4 +203,4 @@ def game_recommendations(name, similarity_data=cosine_sim_df, items=data, k=5):
 game_clean_df[['title', 'genre']].sample(10)
 
 # mendapatkan rekomendasi game
-game_recommendations('Chiller')
+game_recommendations('Chiller') # genre : actian, horror
